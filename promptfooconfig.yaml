@@ -1,0 +1,357 @@
+{
+  "description": "Jev fictional scam classification regression",
+  "prompts": [
+    "{{text}}"
+  ],
+  "providers": [
+    {
+      "id": "typesafe:jev-latest",
+      "config": {
+        "questions": {
+          "category": {
+            "type": "choice",
+            "instructions": "這則訊息最符合下列哪一種詐騙態樣？若不屬於任何詐騙態樣，請選「正常訊息」。",
+            "criteria": {
+              "釣魚連結": "要求點擊連結、掃描 QR Code 或填寫表單，假冒物流、稅務、電信、銀行通知",
+              "假機構服務通知": "假冒電信、銀行、信用卡中心、醫院等機構，以異常、欠費、個資外洩為由要求處理",
+              "假客服解除分期": "假冒電商或銀行客服，聲稱誤設分期或重複扣款，要求到 ATM 或網銀操作",
+              "假公權力": "假冒檢察官、警察、法院，以涉案、洗錢為由要求保密、匯款或交出帳戶",
+              "假投資": "以老師帶單、保證獲利、投資群組等方式誘導入金",
+              "假交友": "透過交友或社群關係建立感情後，誘導下載 APP 或一起投資",
+              "熟人冒充": "冒充親友或使用新號碼，以急用為由要求借錢或匯款",
+              "網購交易陷阱": "假冒購物、賣貨便或包裹通知，誘導付款或私下交易",
+              "假買家騙賣家": "假冒買家，以系統鎖定或認證為由要求賣家操作分享畫面或離開平台",
+              "假求職": "以高薪兼職為誘餌，要求先付費、先購買物品或提供帳戶資料",
+              "正常訊息": "正常訊息，不屬於上述任何詐騙態樣"
+            }
+          },
+          "demand_link": {
+            "type": "noul",
+            "instructions": "這則訊息是否要求點擊連結、開啟網址或掃描 QR Code？"
+          },
+          "demand_card_info": {
+            "type": "noul",
+            "instructions": "這則訊息是否要求輸入卡號、密碼、驗證碼或個人證件資料？"
+          },
+          "demand_transfer": {
+            "type": "noul",
+            "instructions": "這則訊息是否要求匯款、轉帳或提供存款資訊？"
+          },
+          "off_platform": {
+            "type": "noul",
+            "instructions": "這則訊息是否要求離開原平台或改用私訊、其他通訊軟體交易？"
+          },
+          "demand_app_install": {
+            "type": "noul",
+            "instructions": "這則訊息是否要求下載指定 APP？"
+          },
+          "impersonate_authority": {
+            "type": "noul",
+            "instructions": "這則訊息是否冒充政府機關、檢警、銀行、電信或客服？"
+          },
+          "impersonate_relation": {
+            "type": "noul",
+            "instructions": "這則訊息是否冒充親友或家人？"
+          },
+          "urgency": {
+            "type": "noul",
+            "instructions": "這則訊息是否製造急迫感或催促立即行動？"
+          },
+          "threat": {
+            "type": "noul",
+            "instructions": "這則訊息是否以凍結、涉案、影響車籍等後果施壓？"
+          },
+          "secrecy": {
+            "type": "noul",
+            "instructions": "這則訊息是否要求保密或不可告知家人？"
+          },
+          "guaranteed_return": {
+            "type": "noul",
+            "instructions": "這則訊息是否承諾保證獲利或高額回報？"
+          },
+          "upfront_payment": {
+            "type": "noul",
+            "instructions": "這則訊息是否要求先付費、保證金、稅金或購買物品？"
+          }
+        }
+      }
+    }
+  ],
+  "tests": [
+    {
+      "vars": {
+        "text": "【虛構案例】包裹地址不完整，請點 https://parcel.example.invalid 補填資料。"
+      },
+      "assert": [
+        {
+          "type": "javascript",
+          "value": "output.category.choice === \"釣魚連結\""
+        }
+      ]
+    },
+    {
+      "vars": {
+        "text": "【虛構案例】我是電信客服，你的門號異常，即將停話，請立即配合處理。"
+      },
+      "assert": [
+        {
+          "type": "javascript",
+          "value": "output.category.choice === \"假機構服務通知\""
+        }
+      ]
+    },
+    {
+      "vars": {
+        "text": "【虛構案例】客服誤設分期付款，請到 ATM 解除設定。"
+      },
+      "assert": [
+        {
+          "type": "javascript",
+          "value": "output.category.choice === \"假客服解除分期\""
+        }
+      ]
+    },
+    {
+      "vars": {
+        "text": "【虛構案例】我是檢察官，你涉及洗錢，請保密並把資金匯入監管帳戶。"
+      },
+      "assert": [
+        {
+          "type": "javascript",
+          "value": "output.category.choice === \"假公權力\""
+        }
+      ]
+    },
+    {
+      "vars": {
+        "text": "【虛構案例】老師帶單保證獲利，請立即入金加入投資群。"
+      },
+      "assert": [
+        {
+          "type": "javascript",
+          "value": "output.category.choice === \"假投資\""
+        }
+      ]
+    },
+    {
+      "vars": {
+        "text": "【虛構案例】親愛的，我們一起投資未來，請下載我推薦的投資 APP。"
+      },
+      "assert": [
+        {
+          "type": "javascript",
+          "value": "output.category.choice === \"假交友\""
+        }
+      ]
+    },
+    {
+      "vars": {
+        "text": "【虛構案例】媽，我換新號碼，現在急需借錢，請先轉帳給我。"
+      },
+      "assert": [
+        {
+          "type": "javascript",
+          "value": "output.category.choice === \"熟人冒充\""
+        }
+      ]
+    },
+    {
+      "vars": {
+        "text": "【虛構案例】賣貨便交易請先匯款並到站外完成付款。"
+      },
+      "assert": [
+        {
+          "type": "javascript",
+          "value": "output.category.choice === \"網購交易陷阱\""
+        }
+      ]
+    },
+    {
+      "vars": {
+        "text": "【虛構案例】我想買你的商品，但系統鎖住了，請加客服私訊並分享畫面認證。"
+      },
+      "assert": [
+        {
+          "type": "javascript",
+          "value": "output.category.choice === \"假買家騙賣家\""
+        }
+      ]
+    },
+    {
+      "vars": {
+        "text": "【虛構案例】高薪在家兼職，先付保證金並提供帳戶即可錄取。"
+      },
+      "assert": [
+        {
+          "type": "javascript",
+          "value": "output.category.choice === \"假求職\""
+        }
+      ]
+    },
+    {
+      "vars": {
+        "text": "明天中午一起吃午餐嗎？"
+      },
+      "assert": [
+        {
+          "type": "javascript",
+          "value": "output.category.choice === \"正常訊息\""
+        }
+      ]
+    },
+    {
+      "vars": {
+        "text": "圖書館借閱通知，請到館確認。"
+      },
+      "assert": [
+        {
+          "type": "javascript",
+          "value": "output.category.choice === \"正常訊息\""
+        }
+      ]
+    },
+    {
+      "vars": {
+        "text": "本週讀書會改到週五下午。"
+      },
+      "assert": [
+        {
+          "type": "javascript",
+          "value": "output.category.choice === \"正常訊息\""
+        }
+      ]
+    },
+    {
+      "vars": {
+        "text": "這是公開課程的時間表，歡迎參考。"
+      },
+      "assert": [
+        {
+          "type": "javascript",
+          "value": "output.category.choice === \"正常訊息\""
+        }
+      ]
+    },
+    {
+      "vars": {
+        "text": "今天會議取消，改日通知。"
+      },
+      "assert": [
+        {
+          "type": "javascript",
+          "value": "output.category.choice === \"正常訊息\""
+        }
+      ]
+    },
+    {
+      "vars": {
+        "text": "記得帶雨傘，外面正在下雨。"
+      },
+      "assert": [
+        {
+          "type": "javascript",
+          "value": "output.category.choice === \"正常訊息\""
+        }
+      ]
+    },
+    {
+      "vars": {
+        "text": "公司資訊公告請自行登入內部入口查看。"
+      },
+      "assert": [
+        {
+          "type": "javascript",
+          "value": "output.category.choice === \"正常訊息\""
+        }
+      ]
+    },
+    {
+      "vars": {
+        "text": "我已收到你寄來的書，謝謝。"
+      },
+      "assert": [
+        {
+          "type": "javascript",
+          "value": "output.category.choice === \"正常訊息\""
+        }
+      ]
+    },
+    {
+      "vars": {
+        "text": "週末公園散步的照片整理好了。"
+      },
+      "assert": [
+        {
+          "type": "javascript",
+          "value": "output.category.choice === \"正常訊息\""
+        }
+      ]
+    },
+    {
+      "vars": {
+        "text": "請先透過官網公布的電話確認通知真偽。"
+      },
+      "assert": [
+        {
+          "type": "javascript",
+          "value": "output.category.choice === \"正常訊息\""
+        }
+      ]
+    },
+    {
+      "vars": {
+        "text": "請不要向任何人提供驗證碼。"
+      },
+      "assert": [
+        {
+          "type": "javascript",
+          "value": "output.category.choice === \"正常訊息\""
+        }
+      ]
+    },
+    {
+      "vars": {
+        "text": "學校園遊會下週舉行。"
+      },
+      "assert": [
+        {
+          "type": "javascript",
+          "value": "output.category.choice === \"正常訊息\""
+        }
+      ]
+    },
+    {
+      "vars": {
+        "text": "這份食譜的材料很容易取得。"
+      },
+      "assert": [
+        {
+          "type": "javascript",
+          "value": "output.category.choice === \"正常訊息\""
+        }
+      ]
+    },
+    {
+      "vars": {
+        "text": "本月社團活動為線上讀書分享。"
+      },
+      "assert": [
+        {
+          "type": "javascript",
+          "value": "output.category.choice === \"正常訊息\""
+        }
+      ]
+    },
+    {
+      "vars": {
+        "text": "到家後記得休息，晚安。"
+      },
+      "assert": [
+        {
+          "type": "javascript",
+          "value": "output.category.choice === \"正常訊息\""
+        }
+      ]
+    }
+  ]
+}

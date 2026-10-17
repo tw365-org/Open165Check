@@ -1,0 +1,8 @@
+# Copy to .dev.vars.local; never commit real secrets.
+JEV_API_KEY=
+TURNSTILE_SECRET=1x0000000000000000000000000000000AA
+RATE_LIMIT_SECRET=replace-with-a-long-random-local-secret
+# Local admin bypass is available ONLY on localhost AND ENVIRONMENT=local.
+LOCAL_ADMIN_EMAIL=developer@localhost
+# Optional local-only fake model for offline acceptance tests.
+LOCAL_MOCK_JEV=false

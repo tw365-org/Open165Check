@@ -1,0 +1,7 @@
+{
+  "name": "open165check-promptfoo-regression",
+  "private": true,
+  "license": "MIT",
+  "scripts": { "eval": "promptfoo eval -c ../../promptfooconfig.yaml --no-cache" },
+  "devDependencies": { "promptfoo": "0.124.1" }
+}

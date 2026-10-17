@@ -1,0 +1,75 @@
+{
+  "model": "fixture-v1",
+  "answers": {
+    "category": {
+      "type": "choice",
+      "choice": "假投資",
+      "probabilities": {
+        "釣魚連結": 0.01,
+        "假機構服務通知": 0.01,
+        "假客服解除分期": 0.01,
+        "假公權力": 0.01,
+        "假投資": 0.9,
+        "假交友": 0.01,
+        "熟人冒充": 0.01,
+        "網購交易陷阱": 0.01,
+        "假買家騙賣家": 0.01,
+        "假求職": 0.01,
+        "正常訊息": 0.01
+      },
+      "confidence": 0.9
+    },
+    "demand_link": {
+      "type": "noul",
+      "noul": 0.8
+    },
+    "demand_card_info": {
+      "type": "noul",
+      "noul": 0.8
+    },
+    "demand_transfer": {
+      "type": "noul",
+      "noul": 0.8
+    },
+    "off_platform": {
+      "type": "noul",
+      "noul": 0.8
+    },
+    "demand_app_install": {
+      "type": "noul",
+      "noul": 0.8
+    },
+    "impersonate_authority": {
+      "type": "noul",
+      "noul": 0.8
+    },
+    "impersonate_relation": {
+      "type": "noul",
+      "noul": 0.8
+    },
+    "urgency": {
+      "type": "noul",
+      "noul": 0.8
+    },
+    "threat": {
+      "type": "noul",
+      "noul": 0.8
+    },
+    "secrecy": {
+      "type": "noul",
+      "noul": 0.8
+    },
+    "guaranteed_return": {
+      "type": "noul",
+      "noul": 0.8
+    },
+    "upfront_payment": {
+      "type": "noul",
+      "noul": 0.8
+    }
+  },
+  "usage": {
+    "input_tokens": 100,
+    "output_tokens": 20
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "open165check",
+  "main": "src/worker/index.ts",
+  "compatibility_date": "2026-10-17",
+  "compatibility_flags": ["nodejs_compat"],
+  "workers_dev": false,
+  "preview_urls": false,
+  "assets": { "directory": "dist", "binding": "ASSETS", "not_found_handling": "single-page-application", "run_worker_first": true },
+  "observability": { "enabled": true, "traces": { "enabled": true } },
+  "triggers": { "crons": ["17 * * * *"] },
+  "env": {
+    "local": {
+      "name": "open165check-local",
+      "assets": { "directory": "dist", "binding": "ASSETS", "not_found_handling": "single-page-application", "run_worker_first": true },
+      "vars": { "ENVIRONMENT": "local", "JEV_MODEL": "jev-latest", "JEV_API_URL": "https://api.typesafe.ai/v1/systemone", "TURNSTILE_SITE_KEY": "1x00000000000000000000AA", "EXPECTED_HOSTNAMES": "localhost,127.0.0.1", "PUBLIC_HOURLY_LIMIT": 10, "PUBLIC_DAILY_LIMIT": 500 },
+      "d1_databases": [{ "binding": "DB", "database_name": "open165check-local", "database_id": "00000000-0000-0000-0000-000000000001", "migrations_dir": "migrations" }]
+    },
+    "staging": {
+      "name": "open165check-staging",
+      "assets": { "directory": "dist", "binding": "ASSETS", "not_found_handling": "single-page-application", "run_worker_first": true },
+      "vars": { "ENVIRONMENT": "staging", "JEV_MODEL": "jev-latest", "JEV_API_URL": "https://api.typesafe.ai/v1/systemone", "TURNSTILE_SITE_KEY": "", "EXPECTED_HOSTNAMES": "", "ACCESS_TEAM_DOMAIN": "", "ACCESS_AUD": "", "PUBLIC_HOURLY_LIMIT": 10, "PUBLIC_DAILY_LIMIT": 500 },
+      "d1_databases": [{ "binding": "DB", "database_name": "open165check-staging", "database_id": "REPLACE_WITH_STAGING_D1_ID", "migrations_dir": "migrations" }]
+    },
+    "production": {
+      "name": "open165check-production",
+      "assets": { "directory": "dist", "binding": "ASSETS", "not_found_handling": "single-page-application", "run_worker_first": true },
+      "vars": { "ENVIRONMENT": "production", "JEV_MODEL": "jev-latest", "JEV_API_URL": "https://api.typesafe.ai/v1/systemone", "TURNSTILE_SITE_KEY": "", "EXPECTED_HOSTNAMES": "", "ACCESS_TEAM_DOMAIN": "", "ACCESS_AUD": "", "PUBLIC_HOURLY_LIMIT": 10, "PUBLIC_DAILY_LIMIT": 500 },
+      "d1_databases": [{ "binding": "DB", "database_name": "open165check-production", "database_id": "REPLACE_WITH_PRODUCTION_D1_ID", "migrations_dir": "migrations" }]
+    }
+  }
+}

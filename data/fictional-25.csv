@@ -1,0 +1,26 @@
+﻿id,text,label,category,variant
+scam-01,【虛構案例】包裹地址不完整，請點 https://parcel.example.invalid 補填資料。,scam,釣魚連結,fictional
+scam-02,【虛構案例】我是電信客服，你的門號異常，即將停話，請立即配合處理。,scam,假機構服務通知,fictional
+scam-03,【虛構案例】客服誤設分期付款，請到 ATM 解除設定。,scam,假客服解除分期,fictional
+scam-04,【虛構案例】我是檢察官，你涉及洗錢，請保密並把資金匯入監管帳戶。,scam,假公權力,fictional
+scam-05,【虛構案例】老師帶單保證獲利，請立即入金加入投資群。,scam,假投資,fictional
+scam-06,【虛構案例】親愛的，我們一起投資未來，請下載我推薦的投資 APP。,scam,假交友,fictional
+scam-07,【虛構案例】媽，我換新號碼，現在急需借錢，請先轉帳給我。,scam,熟人冒充,fictional
+scam-08,【虛構案例】賣貨便交易請先匯款並到站外完成付款。,scam,網購交易陷阱,fictional
+scam-09,【虛構案例】我想買你的商品，但系統鎖住了，請加客服私訊並分享畫面認證。,scam,假買家騙賣家,fictional
+scam-10,【虛構案例】高薪在家兼職，先付保證金並提供帳戶即可錄取。,scam,假求職,fictional
+legit-01,【虛構案例】明天中午一起吃午餐嗎？,legit,正常訊息,fictional
+legit-02,【虛構案例】圖書館借閱通知，請到館確認。,legit,正常訊息,fictional
+legit-03,【虛構案例】本週讀書會改到週五下午。,legit,正常訊息,fictional
+legit-04,【虛構案例】這是公開課程的時間表，歡迎參考。,legit,正常訊息,fictional
+legit-05,【虛構案例】今天會議取消，改日通知。,legit,正常訊息,fictional
+legit-06,【虛構案例】記得帶雨傘，外面正在下雨。,legit,正常訊息,fictional
+legit-07,【虛構案例】公司資訊公告請自行登入內部入口查看。,legit,正常訊息,fictional
+legit-08,【虛構案例】我已收到你寄來的書，謝謝。,legit,正常訊息,fictional
+legit-09,【虛構案例】週末公園散步的照片整理好了。,legit,正常訊息,fictional
+legit-10,【虛構案例】請先透過官網公布的電話確認通知真偽。,legit,正常訊息,fictional
+legit-11,【虛構案例】請不要向任何人提供驗證碼。,legit,正常訊息,fictional
+legit-12,【虛構案例】學校園遊會下週舉行。,legit,正常訊息,fictional
+legit-13,【虛構案例】這份食譜的材料很容易取得。,legit,正常訊息,fictional
+legit-14,【虛構案例】本月社團活動為線上讀書分享。,legit,正常訊息,fictional
+legit-15,【虛構案例】到家後記得休息，晚安。,legit,正常訊息,fictional

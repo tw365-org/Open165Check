@@ -1,0 +1,55 @@
+{
+  "name": "open165check",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "engines": {
+    "node": ">=22.22.0"
+  },
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "dev:worker": "wrangler dev --env local",
+    "build": "npm run check && vite build",
+    "check": "npm run types && tsc --noEmit",
+    "test": "vitest run",
+    "test:python": "python -m unittest discover -s tests -p test_*.py",
+    "test:e2e": "playwright test",
+    "db:local": "wrangler d1 migrations apply DB --local --env local",
+    "types": "wrangler types --env local --strict-vars=false --include-runtime=false",
+    "eval:promptfoo": "npm --prefix tools/promptfoo run eval",
+    "deploy:staging": "node scripts/preflight.mjs staging && npm run build && wrangler deploy --env staging",
+    "deploy:production": "node scripts/preflight.mjs production && npm run build && wrangler deploy --env production"
+  },
+  "dependencies": {
+    "hono": "^4.10.0",
+    "jose": "^6.1.0",
+    "papaparse": "^5.5.3",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "zod": "^4.5.0"
+  },
+  "devDependencies": {
+    "@cloudflare/vitest-plugin": "1.4.4",
+    "@cloudflare/workers-types": "latest",
+    "@playwright/test": "latest",
+    "@types/node": "^24.0.0",
+    "@types/papaparse": "^5.3.16",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "@vitejs/plugin-react": "latest",
+    "typescript": "^5.9.0",
+    "vite": "latest",
+    "vitest": "^4.1.0",
+    "wrangler": "latest"
+  },
+  "license": "MIT",
+  "description": "台灣風格的開放防詐訊息檢查與模型評估平台，支援 Jev、Cloudflare Workers 與 D1。",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tw365-org/Open165Check.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tw365-org/Open165Check/issues"
+  },
+  "homepage": "https://github.com/tw365-org/Open165Check#readme"
+}
